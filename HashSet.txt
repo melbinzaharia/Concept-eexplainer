@@ -1,0 +1,42 @@
+The HashSet class of the Java Collections framework provides the functionalities of the hash table data structure.
+It implements the Set interface.
+HashSet<Integer> numbers = new HashSet<>()//creating a hashset
+
+ HashSet is commonly used if we have to access elements randomly. It is because elements in a hash table are accessed using hash codes.
+The hashcode of an element is a unique identity that helps to identify the element in a hash table.
+HashSet cannot contain duplicate elements. Hence, each hash set element has a unique hashcode.
+It uses a technique to store elements is called hashing. HashSet uses HashMap internally in Java.
+
+Methods of hashset:=
+add() - inserts the specified element to the set
+addAll() - inserts all the elements of the specified collection to the set
+remove() - removes the specified element from the set
+removeAll() - removes all the elements from the set
+clone()	Creates a copy of the HashSet
+contains()	Searches the HashSet for the specified element and returns a boolean result
+isEmpty()	Checks if the HashSet is empty
+size()	Returns the size of the HashSet
+clear()	Removes all the elements from the HashSet
+
+
+import java.util.*;  
+public class Demo
+{  
+public static void main(String[] args)  
+{  
+HashSet<String> hs= new HashSet<String>();  
+hs.add("India");  
+hs.add("America");  
+hs.add("Russia");  
+hs.add("China");  
+hs.add("India");    // duplicates will not be added here                      
+System.out.println("Set is "+hs);           
+Iterator it=hs.iterator();                    
+System.out.println("Elements using iterator:");  
+while(it.hasNext())                         
+{  
+String s=(String)it.next();  
+System.out.println(s);  
+}  
+}  
+}  
