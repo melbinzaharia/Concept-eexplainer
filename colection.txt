@@ -1,0 +1,26 @@
+The Collection is a framework that provides an architecture used to store and manipulate the group of objects. 
+ collection interfaces: The framework has a lot of interfaces that provide just the declaration of methods. 
+The framework has the following interfaces:-
+
+Iterator Interface
+List Interface
+Queue Interface
+Deque Interface
+Collection Interface
+Set Interface
+SortedSet Interface
+
+collection classes: All the interface of the collection are implemented by classes and these classes provide body to the method of interfaces
+We will cover each class in a separate topic. The framework has the following classes:
+
+Collections class
+AbstractCollection class
+AbstractSet class
+HashSet class
+LinkedHashSet class
+TreeSet class
+AbstractList class
+ArrayList class
+LinkedList class
+Stack class
+PriorityQueue class
