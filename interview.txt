@@ -1,1 +1,57 @@
 
+JDBC EXPLAINER:-
+1)Spring JdbcTemplate is a powerful mechanism to connect to the database and execute SQL queries. It internally uses JDBC api, but eliminates a lot of problems of JDBC API
+
+
+2) RowMapper interface allows to map a row of the relations with the instance of user-defined class. It iterates the ResultSet internally and adds it into the collection.
+
+
+3) The Java Persistence API (JPA) is a specification of Java. It is used to persist data between Java object and relational database. JPA acts as a bridge between object-oriented domain models and relational database systems.
+As JPA is just a specification, it doesn't perform any operation by itself. It requires an implementation. So, ORM tools like Hibernate, TopLink and iBatis implements JPA specifications for data persistence.
+
+
+4)Hibernate is a Java framework that simplifies the development of Java application to interact with the database. It is an open source, lightweight, ORM (Object Relational Mapping) tool. Hibernate implements the specifications of JPA (Java Persistence API) for data persistence.
+
+
+5)A Java class can be easily transformed into an entity. For transformation the basic requirements are: -
+No-argument Constructor
+Annotation
+
+
+6) Following are some of the important roles of an entity manager: -
+The entity manager implements the API and encapsulates all of them within a single interface.
+Entity manager is used to read, delete and write an entity.
+An object referenced by an entity is managed by entity manager.
+
+
+7)What is persistence context in JPA?
+Persistence Context is an environment or cache where entity instances(which are capable of holding data and thereby having the ability to be persisted in a database) are managed by Entity Manager.It syncs the entity with database.All objects having @Entity annotation are capable of being persisted.
+A persistence context is a set of entities such that for any persistent identity there is a unique entity instance. Within a persistence context, entities are managed. The EntityManager controls their lifecycle, and they can access datastore resources. When a persistence context ends, previously-managed entities become detached.
+
+
+8)A Map is an interface in which a unique key is associated with each value object. Thus, operations like search, update, delete are performed on the basis of key.
+Map Mapping Example
+In this example, we embed an object in an entity class and define it as a collection type Map.
+private Map<Integer,Address> map=new HashMap<Integer,Address>();  
+This example contains the following steps: -
+Create an entity class Employee.java under com.javatpoint.jpa package that contains employee id, name and embedded object (employee Address). The annotation @ElementCollection represents the embedded object.
+
+9)JPA One-To-One Mapping The One-To-One mapping represents a single-valued association where an instance of one entity is associated with an instance of another entity. In this type of association one instance of source entity can be mapped atmost one instance of target entity.
+
+10)the entity classes are treated as relational tables (concept of JPA), therefore the relationships between Entity classes are as follows:
+@ManyToOne Relation
+@OneToMany Relation
+@OneToOne Relation
+@ManyToMany Relation
+
+11)JPA One-To-Many Mapping The One-To-Many mapping comes into the category of collection-valued association where an entity is associated with a collection of other entities. Hence, in this type of association the instance of one entity can be mapped with any number of instances of another entity
+
+12) JPA Many-To-Many Mapping The Many-To-Many mapping represents a collection-valued association where any number of entities can be associated with a collection of other entities. In relational database any number of rows of one entity can be referred to any number of rows of another entity
+
+13) A DataSource is a factory for connections to the physical databases. It is an alternative to the DriverManager facility. A datasource uses a URL along with username/password credentials to establish the database connection.
+In Java, a datasource implements the javax.sql.DataSource interface. This datasource will typically be registered with the JNDI service and can be discovered using its JNDI name.
+
+14)The persistence.xml configuration file is used to configure a given JPA Persistence Unit. The Persistence Unit defines all the metadata required to bootstrap an EntityManagerFactory, like entity mappings, data source, and transaction settings, as well as JPA provider configuration properties.
+
+15)rudRepository is an interface and extends Spring data Repository interface. CrudRepository provides generic CRUD operation on a repository for a specific type. It has generic methods for CRUD operation. To use CrudRepository we have to create our interface and extend CrudRepository. We need not to implement our interface, its implementation will be created automatically at runtime. Find some of CrudRepository methods.
+
