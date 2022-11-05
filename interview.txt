@@ -55,3 +55,393 @@ In Java, a datasource implements the javax.sql.DataSource interface. This dataso
 
 15)rudRepository is an interface and extends Spring data Repository interface. CrudRepository provides generic CRUD operation on a repository for a specific type. It has generic methods for CRUD operation. To use CrudRepository we have to create our interface and extend CrudRepository. We need not to implement our interface, its implementation will be created automatically at runtime. Find some of CrudRepository methods.
 
+1)What is loose coupling?
+
+One of the most key aspects of a Java project is loose coupling. The loose coupling in Java shows how to achieve loose coupling in Java projects or programs. The more loosely coupled structures present in the project or program, the better it is. In loose coupling, a method or class is almost independent, and they have less depended on each other. In other words, the more knowledge one class or method has about another class or method, the more tightly coupled structure is developed. If the classes or methods know less about each other, the more loosely coupled structure comes into existence.
+interface Parent  
+{  
+    void foo();  
+}  
+  
+class A implements Parent  
+{  
+     A(int x, int y)  
+    {  
+          
+    }  
+      
+    public void foo()  
+    {  
+        System.out.println("In the foo method of class A.");  
+    }  
+}  
+class B implements Parent  
+{  
+    public void foo()  
+    {  
+        System.out.println("In the foo method of class B.");  
+    }  
+}  
+public class CouplingExample2  
+{  
+  public static void main(String argvs[])   
+{  
+
+B obj = new B();  
+obj.foo();  
+}  
+}  
+
+2)What is a Dependency?
+
+Dependency is nothing but a ‘Library’ that provides specific functionality that we can use in our application.
+In Spring-Boot, Dependency Management and Auto-Configuration work simultaneously.
+It is the auto-configuration that makes managing dependencies supremely easy for us.
+We have to add the dependencies in the pom.xml/build.gradle file.
+These added dependencies will then get downloaded from Maven Central.
+The downloaded dependencies will get stored into the ‘.m2’ folder in the local file system.
+The Spring-Boot application can access these dependencies from  ‘.m2’ and its sub-directories.
+
+
+3)What is IOC (Inversion of Control)?
+Spring IoC (Inversion of Control) Container is the core of Spring Framework. It creates the objects, configures and assembles their dependencies, manages their entire life cycle. The Container uses Dependency Injection(DI) to manage the components that make up the application. It gets the information about the objects from a configuration file(XML) or Java Code or Java Annotations and Java POJO class. These objects are called Beans. Since the Controlling of Java objects and their lifecycle is not done by the developers, hence the name Inversion Of Control.
+There are 2 types of IoC containers:
+BeanFactory 
+ApplicationContext 
+That means if you want to use an IoC container in spring we need to use a BeanFactory or ApplicationContext. The BeanFactory is the most basic version of IoC containers, and the ApplicationContext extends the features of BeanFactory. The followings are some of the main features of Spring IoC,
+Creating Object for us,
+Managing our objects,
+Helping our application to be configurable,
+Managing dependencies
+
+4)What is Dependency Injection?
+
+Dependency Injection (DI) is a design pattern used to implement IoC. It allows the creation of dependent objects outside of a class and provides those objects to a class through different ways. Using DI, we move the creation and binding of the dependent objects outside of the class that depends on them.
+
+Constructor Injection: In the constructor injection, the injector supplies the service (dependency) through the client class constructor.
+
+Property Injection: In the property injection (aka the Setter Injection), the injector supplies the dependency through a public property of the client class.
+Method Injection: In this type of injection, the client class implements an interface which declares the method(s) to supply the dependency and the injector uses this interface to supply the dependency to the client class.
+
+5)What is Auto Wiring?
+Autowiring feature of spring framework enables you to inject the object dependency implicitly. It internally uses setter or constructor injection.
+Autowiring can't be used to inject primitive and string values. It works with reference only.
+
+6)What is a component scan?
+
+The process of discovering Spring Components within the classpath of the application is called Component Scanning in Spring. Later spring will use them to add in application context.
+The classes annotated with @Component, @Controller, @Service, @Repository, @Configuration, @RestController etc will be treated as Spring Components.
+
+
+7)Are Spring beans thread safe?
+
+No spring object is not thread safe .You have to manage it.For scope thread different service bean is created for every new thread request to service
+
+
+
+
+8)What are the other scopes available?
+
+1) singleton: It returns a single bean instance per Spring IoC container.
+2) prototype: It returns a new bean instance each time when requested to create a bean.
+3) request: It returns a single instance for every HTTP request.
+4) session: It returns a single instance for the entire HTTP session.
+5) global session: global session scope is equal to session scope on portlet-based web applications.
+
+
+9)What is the difference between XML and Java?
+XML is a markup language. (Extensible Markup Language) XML defines a set of rules for encoding documents in a format that is both human-readable and machine-readable.
+Java is a programming language and computing platform first released by Sun Microsystems in 1995.
+There are lots of applications and websites that use Java.
+You would (for example) load an XML document and manipulate or perform some calculations with/on the data using Java.
+1. byName
+It uses the name of the bean for injecting dependencies. However, it requires that the name of the property and bean must be the same. It invokes the setter method internally for autowiring.
+
+<bean id="state" class="sample.State">
+ <property name="name" value="UP" />
+</bean>
+<bean id="city" class="sample.City" autowire="byName"></bean>
+ 
+
+2. byType
+It injects the dependency according to the type of the bean. It looks up in the configuration file for the class type of the property. If it finds a bean that matches, it injects the property. If not, the program throws an error. The names of the property and bean can be different in this case. It invokes the setter method internally for autowiring.
+
+<bean id="state" class="sample.State">
+ <property name="name" value="UP" />
+</bean>
+<bean id="city" class="sample.City" autowire="byType"></bean>
+
+10) What is CDI (Contexts and Dependency Injection)?
+
+CDI (Contexts and Dependency Injection) is a standard dependency injection framework included in Java EE 6 and higher.
+It allows us to manage the lifecycle of stateful components via domain-specific lifecycle contexts and inject components (services) into client objects in a type-safe way.
+In this tutorial, we'll take an in-depth look at CDI's most relevant features and implement different approaches for injecting dependencies in client classes.
+
+11) Model 1 Architecture
+Servlet and JSP are the main technologies to develop the web applications.
+Servlet was considered superior to CGI. Servlet technology doesn't create process, rather it creates thread to handle request. The advantage of creating thread over process is that it doesn't allocate separate memory area. Thus many subsequent requests can be easily handled by servlet.
+Problem in Servlet technology Servlet needs to recompile if any designing code is modified. It doesn't provide separation of concern. Presentation and Business logic are mixed up.
+JSP overcomes almost all the problems of Servlet. It provides better separation of concern, now presentation and business logic can be easily separated. You don't need to redeploy the application if the JSP page is modified. JSP provides support to develop web applications using JavaBean, custom tags and JSTL so that we can put the business logic separate from our JSP that will be easier to test and debug.
+
+12) Model 2 (MVC) Architecture
+
+Model 2 is based on the MVC (Model View Controller) design pattern. The MVC design pattern consists of three modules: model, view and controller.
+Model The model represents the state (data) and business logic of the application.
+
+View The view module is responsible to display data i.e. it represents the presentation.
+
+Controller The controller module acts as an interface between view and model. It intercepts all the requests i.e. receives input and commands to Model / View to change accordingly.
+
+13) Can you show an example controller method in Spring MVC?
+// Annotation
+@Controller
+// Main class
+public class DemoController {
+  
+    @RequestMapping("/hello")
+    @ResponseBody
+  
+    // Method
+    public String helloGFG()
+    {
+        return "Hello GeeksForGeeks";
+    }
+}
+
+14)
+What is a ViewResolver?
+
+ViewResolver is the translator which converts view name into View object
+View is the component which renders response to the client
+By defining ViewResolver, you can decide the way a response is shown. (ex. html, json, binary)
+
+15) Request Mapping
+One of the most important annotations in spring is the @RequestMapping Annotation which is used to map HTTP requests to handler methods of MVC and REST controllers. In Spring MVC applications, the DispatcherServlet (Front Controller) is responsible for routing incoming HTTP requests to handler methods of controllers. When configuring Spring MVC, you need to specify the mappings between the requests and handler methods. To configure the mapping of web requests, we use the @RequestMapping annotation. The @RequestMapping annotation can be applied to class-level and/or method-level in a controller. The class-level annotation maps a specific request path or pattern onto a controller. You can then apply additional method-level annotations to make mappings more specific to handler methods. So let’s understand @RequestMapping Annotation at Method-level and Class level by examples. 
+
+16) What is Dispatcher Servlet?
+DispatcherServlet acts as the Front Controller for Spring-based web applications. So now what is Front Controller? So it is pretty simple. Any request is going to come into our website. The front controller is going to stand in front and is going to accept all the requests and once the front controller accepts that request then this is the job of the front controller to make a decision as to who is the right controller to handle that request. For example, refer to the below image. Suppose we have a website called student.com and the client is make a request to save student data by hitting the following URL student.com/save and its first come to the front controller and once the front controller accepts that request it is going to assign to the Controller_1 as this controller handle the request for /save operation. Then it is going to return the response to the Client.
+17) How do you set up the Dispatcher Servlet?
+
+<servlet-mapping>
+
+      <!-- Provide a Servlet Name that you want to map -->
+    <servlet-name>frontcontroller-dispatcher</servlet-name>
+    
+    <!-- Provide a url pattern -->
+    <url-pattern>/student.com/*</url-pattern>
+    
+</servlet-mapping>
+
+    So this does mean that the servlet “frontcontroller-dispatcher” is going to handle all the requests starting from student.com/anything, that may be student.com/save or student.com/get, anything. But it must start with student.com. So we are done with creating a Dispatcher Servlet.
+
+18) 	What is a form backing object?
+The client-side HTML page fields are mapped with back end Java bean class. This is called as Form Backing Bean Object
+For Example:
+Take the Facebook login page as an Example
+On the login page, you can see two fields called email and password. These two fields are mapped with one Java bean class or Map Object which is called a backing bean.
+
+
+
+
+
+19) How is validation done using Spring MVC?
+BindingResult holds the result of a validation and binding and contains errors that may have occurred. The BindingResult must come right after the model object that is validated or else Spring fails to validate the object and throws an exception.
+
+20)What is a Path Variable?
+The @PathVariable annotation defines the boolean attribute required for us to indicate if a path variable is mandatory to a handler method. Since the required attribute is false, Spring will not complain if the id path variable is not sent in the request.
+
+
+
+
+
+
+JDBC EXPLAINER:-
+
+
+
+
+1)Spring JdbcTemplate is a powerful mechanism to connect to the database and execute SQL queries. It internally uses JDBC api, but eliminates a lot of problems of JDBC API
+
+
+
+
+
+
+
+
+
+
+
+
+2) RowMapper interface allows to map a row of the relations with the instance of user-defined class. It iterates the ResultSet internally and adds it into the collection.
+
+
+
+
+
+
+
+
+
+
+
+
+3) The Java Persistence API (JPA) is a specification of Java. It is used to persist data between Java object and relational database. JPA acts as a bridge between object-oriented domain models and relational database systems.
+
+
+As JPA is just a specification, it doesn't perform any operation by itself. It requires an implementation. So, ORM tools like Hibernate, TopLink and iBatis implements JPA specifications for data persistence.
+
+
+
+
+
+
+
+
+
+
+
+
+4)Hibernate is a Java framework that simplifies the development of Java application to interact with the database. It is an open source, lightweight, ORM (Object Relational Mapping) tool. Hibernate implements the specifications of JPA (Java Persistence API) for data persistence.
+
+
+
+
+
+
+
+
+
+
+
+
+5)A Java class can be easily transformed into an entity. For transformation the basic requirements are: -
+
+
+No-argument Constructor
+
+
+Annotation
+
+
+
+
+
+
+
+
+
+
+
+
+6) Following are some of the important roles of an entity manager: -
+
+
+The entity manager implements the API and encapsulates all of them within a single interface.
+
+
+Entity manager is used to read, delete and write an entity.
+
+
+An object referenced by an entity is managed by entity manager.
+
+
+
+
+
+
+
+
+
+
+
+
+7)What is persistence context in JPA?
+
+
+Persistence Context is an environment or cache where entity instances(which are capable of holding data and thereby having the ability to be persisted in a database) are managed by Entity Manager.It syncs the entity with database.All objects having @Entity annotation are capable of being persisted.
+
+
+A persistence context is a set of entities such that for any persistent identity there is a unique entity instance. Within a persistence context, entities are managed. The EntityManager controls their lifecycle, and they can access datastore resources. When a persistence context ends, previously-managed entities become detached.
+
+
+
+
+
+
+
+
+
+
+
+
+8)A Map is an interface in which a unique key is associated with each value object. Thus, operations like search, update, delete are performed on the basis of key.
+
+
+Map Mapping Example
+
+
+In this example, we embed an object in an entity class and define it as a collection type Map.
+
+
+private Map<Integer,Address> map=new HashMap<Integer,Address>(); 
+
+
+This example contains the following steps: -
+
+
+Create an entity class Employee.java under com.javatpoint.jpa package that contains employee id, name and embedded object (employee Address). The annotation @ElementCollection represents the embedded object.
+
+
+
+
+
+
+
+9)JPA One-To-One Mapping The One-To-One mapping represents a single-valued association where an instance of one entity is associated with an instance of another entity. In this type of association one instance of source entity can be mapped atmost one instance of target entity.
+
+
+
+
+
+
+
+10)the entity classes are treated as relational tables (concept of JPA), therefore the relationships between Entity classes are as follows:
+
+
+@ManyToOne Relation
+
+
+@OneToMany Relation
+
+
+@OneToOne Relation
+
+
+@ManyToMany Relation
+
+
+
+
+
+
+
+11)JPA One-To-Many Mapping The One-To-Many mapping comes into the category of collection-valued association where an entity is associated with a collection of other entities. Hence, in this type of association the instance of one entity can be mapped with any number of instances of another entity
+
+
+
+
+
+
+
+12) JPA Many-To-Many Mapping The Many-To-Many mapping represents a collection-valued association where any number of entities can be associated with a collection of other entities. In relational database any number of rows of one entity can be referred to any number of rows of another entity
+
+
+
+13) A DataSource is a factory for connections to the physical databases. It is an alternative to the DriverManager facility. A datasource uses a URL along with username/password credentials to establish the database connection.
+In Java, a datasource implements the javax.sql.DataSource interface. This datasource will typically be registered with the JNDI service and can be discovered using its JNDI name.
+
+
+14)The persistence.xml configuration file is used to configure a given JPA Persistence Unit. The Persistence Unit defines all the metadata required to bootstrap an EntityManagerFactory, like entity mappings, data source, and transaction settings, as well as JPA provider configuration properties.
+
+15)rudRepository is an interface and extends Spring data Repository interface. CrudRepository provides generic CRUD operation on a repository for a specific type. It has generic methods for CRUD operation. To use CrudRepository we have to create our interface and extend CrudRepository. We need not to implement our interface, its implementation will be created automatically at runtime. Find some of CrudRepository methods.
